@@ -30,7 +30,8 @@ from geometry.main_page import MainPageMesh
 from geometry.instructions import InstructionsMesh
 from geometry.winning import Winning
 from extras.movement_camera import MovementCamera
-
+from core.matrix import Matrix
+from geometry.scenario import ScenarioMesh
 
 class Example(Base):
     """
@@ -89,6 +90,9 @@ class Example(Base):
 
         self.mainPage = MainPageMesh()
         self.mainPage.set_position([10, 0, -100])
+        
+        # self.scenario = ScenarioMesh()
+        # self.scenario.set_position([0, 0, 0])
 
         self.instructions = InstructionsMesh()
         self.instructions.set_position([7.5, 0, -100])
@@ -131,7 +135,7 @@ class Example(Base):
         self.tripe = TripeMesh()
         self.tripe.translate(-0.75,-0.9,0)
 
-        # NIVEL 1
+        # LEVEL 1
         self.sky_geometry = SphereGeometry(radius=50)
         self.sky_material = TextureMaterial(texture=Texture(file_name="images/sky1.jpg"), property_dict={"doubleSide": True})
         self.sky = Mesh(self.sky_geometry, self.sky_material)
@@ -147,7 +151,7 @@ class Example(Base):
         self.scene.add(self.grass)
         #=================================================
 
-        # NIVEL 2
+        # LEVEL 2
         self.sky_geometry1 = SphereGeometry(radius=50)
         self.sky_material1 = TextureMaterial(texture=Texture(file_name="images/sky1.jpg"), property_dict={"doubleSide": True})
         self.sky1 = Mesh(self.sky_geometry1, self.sky_material1)
@@ -164,7 +168,7 @@ class Example(Base):
         self.scene.add(self.grass1)
         #=================================================
 
-        # NIVEL 3
+        # LEVEL 3
         self.sky_geometry2 = SphereGeometry(radius=50)
         self.sky_material2 = TextureMaterial(texture=Texture(file_name="images/night.jpg"), property_dict={"doubleSide": True})
         self.sky2 = Mesh(self.sky_geometry2, self.sky_material2)
@@ -181,7 +185,7 @@ class Example(Base):
         self.scene.add(self.grass2)
         #=================================================
 
-        #NIVEL 4
+        # LEVEL 4
         nether_sky_geometry = SphereGeometry(radius=50)
         nether_sky_material = TextureMaterial(texture=Texture(file_name="images/red_sky.jpg"), property_dict={"doubleSide": True})
         nether_sky = Mesh(nether_sky_geometry, nether_sky_material)
@@ -198,7 +202,7 @@ class Example(Base):
         self.scene.add(nether) 
         #=================================================
 
-        #NIVEL 5
+        # LEVEL 5
         end_sky_geometry = SphereGeometry(radius=50)
         end_sky_material = TextureMaterial(texture=Texture(file_name="images/end_sky.jpg"), property_dict={"doubleSide": True})
         end_sky = Mesh(end_sky_geometry, end_sky_material)
@@ -215,6 +219,77 @@ class Example(Base):
         self.scene.add(end)
         #=================================================
 
+        # SCENARIO LEVEL 1
+        tree_material = TextureMaterial(texture=Texture(file_name="images/tree.png"))
+        tree_geometry = RectangleGeometry(10,10)
+        tree_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.tree = Mesh(tree_geometry, tree_material)
+        self.tree.set_position([10, 3.12, 0])
+        self.scene.add(self.tree)
+
+        tree_material1 = TextureMaterial(texture=Texture(file_name="images/tree.png"))
+        tree_geometry1 = RectangleGeometry(10,10)
+        tree_geometry1.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.tree1 = Mesh(tree_geometry1, tree_material1)
+        self.tree1.set_position([15, 3.12, 10])
+        self.scene.add(self.tree1)
+
+        tree_material2 = TextureMaterial(texture=Texture(file_name="images/tree.png"))
+        tree_geometry2 = RectangleGeometry(10,10)
+        tree_geometry2.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.tree2 = Mesh(tree_geometry2, tree_material2)
+        self.tree2.set_position([-10, 3.12, 0])
+        self.scene.add(self.tree2)
+
+        tree_material3 = TextureMaterial(texture=Texture(file_name="images/tree.png"))
+        tree_geometry3 = RectangleGeometry(10,10)
+        tree_geometry3.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.tree3 = Mesh(tree_geometry3, tree_material3)
+        self.tree3.set_position([-15, 3.12, 10])
+        self.scene.add(self.tree3)
+
+        tree_material4 = TextureMaterial(texture=Texture(file_name="images/tree.png"))
+        tree_geometry4 = RectangleGeometry(10,10)
+        tree_geometry4.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.tree4 = Mesh(tree_geometry4, tree_material4)
+        self.tree4.set_position([-15, 3.12, 20])
+        self.scene.add(self.tree4)
+
+        tree_material5 = TextureMaterial(texture=Texture(file_name="images/tree.png"))
+        tree_geometry5 = RectangleGeometry(10,10)
+        tree_geometry5.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.tree5 = Mesh(tree_geometry5, tree_material5)
+        self.tree5.set_position([15, 3.12, 20])
+        self.scene.add(self.tree5)
+
+        tree_material6 = TextureMaterial(texture=Texture(file_name="images/tree.png"))
+        tree_geometry6 = RectangleGeometry(10,10)
+        tree_geometry6.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.tree6 = Mesh(tree_geometry6, tree_material6)
+        self.tree6.set_position([-10, 3.12, 30])
+        self.scene.add(self.tree6)
+
+        tree_material7 = TextureMaterial(texture=Texture(file_name="images/tree.png"))
+        tree_geometry7 = RectangleGeometry(10,10)
+        tree_geometry7.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.tree7 = Mesh(tree_geometry7, tree_material7)
+        self.tree7.set_position([10, 3.12, 30])
+        self.scene.add(self.tree7)
+
+        tree_material8 = TextureMaterial(texture=Texture(file_name="images/tree.png"))
+        tree_geometry8 = RectangleGeometry(10,10)
+        tree_geometry8.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.tree8 = Mesh(tree_geometry8, tree_material8)
+        self.tree8.set_position([0, 3.12, 35])
+        self.scene.add(self.tree8)
+
+        # tree_material9 = TextureMaterial(texture=Texture(file_name="images/tree.png"))
+        # tree_geometry9 = RectangleGeometry(10,10)
+        # tree_geometry9.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        # self.tree9 = Mesh(tree_geometry9, tree_material9)
+        # self.tree9.set_position([0, 3.12, -10])
+        # self.scene.add(self.tree9)
+
         self.scene.add(self.arrows[0])
         self.scene.add(self.arrows[1])
         self.scene.add(self.arrows[2])
@@ -224,6 +299,7 @@ class Example(Base):
         self.scene.add(self.instructions)
         self.scene.add(self.gameOver)
         self.scene.add(self.winning)
+        # self.scene.add(self.scenario)
 
         self.lives = 3
         self.angle = 0
@@ -239,7 +315,18 @@ class Example(Base):
 
 
     def update(self):
-        
+        # self.scenario.look_at(self.camera.global_position)
+        self.tree.look_at(self.camera.global_position)
+        self.tree1.look_at(self.camera.global_position)
+        self.tree2.look_at(self.camera.global_position)
+        self.tree3.look_at(self.camera.global_position)
+        self.tree4.look_at(self.camera.global_position)
+        self.tree5.look_at(self.camera.global_position)
+        self.tree6.look_at(self.camera.global_position)
+        self.tree7.look_at(self.camera.global_position)
+        self.tree8.look_at(self.camera.global_position)
+        # self.tree9.look_at(self.camera.global_position)
+
         self.cameraRig.update(self.input, self.level, self.win)
         self.renderer.render(self.scene, self.camera)
         if self.wind == 0:
