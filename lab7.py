@@ -283,12 +283,79 @@ class Example(Base):
         self.tree8.set_position([0, 3.12, 35])
         self.scene.add(self.tree8)
 
-        # tree_material9 = TextureMaterial(texture=Texture(file_name="images/tree.png"))
-        # tree_geometry9 = RectangleGeometry(10,10)
-        # tree_geometry9.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
-        # self.tree9 = Mesh(tree_geometry9, tree_material9)
-        # self.tree9.set_position([0, 3.12, -10])
-        # self.scene.add(self.tree9)
+        #=================================================
+
+        # SCENARIO LEVEL 2
+
+        
+
+        #=================================================
+
+        # SCENARIO LEVEL 3
+        spookytree_material = TextureMaterial(texture=Texture(file_name="images/spooky_tree.png"))
+        spookytree_geometry = RectangleGeometry(10,10)
+        spookytree_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spookytree = Mesh(spookytree_geometry, spookytree_material)
+        self.spookytree.set_position([-91, 3.12, 0])
+        self.scene.add(self.spookytree)
+
+        spookytree_material1 = TextureMaterial(texture=Texture(file_name="images/spooky_tree.png"))
+        spookytree_geometry1 = RectangleGeometry(10,10)
+        spookytree_geometry1.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spookytree1 = Mesh(spookytree_geometry1, spookytree_material1)
+        self.spookytree1.set_position([-86, 3.12, 10])
+        self.scene.add(self.spookytree1)
+
+        spookytree_material2 = TextureMaterial(texture=Texture(file_name="images/spooky_tree.png"))
+        spookytree_geometry2 = RectangleGeometry(10,10)
+        spookytree_geometry2.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spookytree2 = Mesh(spookytree_geometry2, spookytree_material2)
+        self.spookytree2.set_position([-111, 3.12, 0])
+        self.scene.add(self.spookytree2)
+
+        spookytree_material3 = TextureMaterial(texture=Texture(file_name="images/spooky_tree.png"))
+        spookytree_geometry3 = RectangleGeometry(10,10)
+        spookytree_geometry3.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spookytree3 = Mesh(spookytree_geometry3, spookytree_material3)
+        self.spookytree3.set_position([-116, 3.12, 10])
+        self.scene.add(self.spookytree3)
+
+        spookytree_material4 = TextureMaterial(texture=Texture(file_name="images/spooky_tree.png"))
+        spookytree_geometry4 = RectangleGeometry(10,10)
+        spookytree_geometry4.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spookytree4 = Mesh(spookytree_geometry4, spookytree_material4)
+        self.spookytree4.set_position([-116, 3.12, 20])
+        self.scene.add(self.spookytree4)
+
+        spookytree_material5 = TextureMaterial(texture=Texture(file_name="images/spooky_tree.png"))
+        spookytree_geometry5 = RectangleGeometry(10,10)
+        spookytree_geometry5.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spookytree5 = Mesh(spookytree_geometry5, spookytree_material5)
+        self.spookytree5.set_position([-86, 3.12, 20])
+        self.scene.add(self.spookytree5)
+
+        spookytree_material6 = TextureMaterial(texture=Texture(file_name="images/spooky_tree.png"))
+        spookytree_geometry6 = RectangleGeometry(10,10)
+        spookytree_geometry6.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spookytree6 = Mesh(spookytree_geometry6, spookytree_material6)
+        self.spookytree6.set_position([-111, 3.12, 30])
+        self.scene.add(self.spookytree6)
+
+        spookytree_material7 = TextureMaterial(texture=Texture(file_name="images/spooky_tree.png"))
+        spookytree_geometry7 = RectangleGeometry(10,10)
+        spookytree_geometry7.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spookytree7 = Mesh(spookytree_geometry7, spookytree_material7)
+        self.spookytree7.set_position([-91, 3.12, 30])
+        self.scene.add(self.spookytree7)
+
+        spookytree_material8 = TextureMaterial(texture=Texture(file_name="images/spooky_tree.png"))
+        spookytree_geometry8 = RectangleGeometry(10,10)
+        spookytree_geometry8.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spookytree8 = Mesh(spookytree_geometry8, spookytree_material8)
+        self.spookytree8.set_position([-101, 3.12, 35])
+        self.scene.add(self.spookytree8)
+        
+
 
         self.scene.add(self.arrows[0])
         self.scene.add(self.arrows[1])
@@ -299,7 +366,6 @@ class Example(Base):
         self.scene.add(self.instructions)
         self.scene.add(self.gameOver)
         self.scene.add(self.winning)
-        # self.scene.add(self.scenario)
 
         self.lives = 3
         self.angle = 0
@@ -315,7 +381,6 @@ class Example(Base):
 
 
     def update(self):
-        # self.scenario.look_at(self.camera.global_position)
         self.tree.look_at(self.camera.global_position)
         self.tree1.look_at(self.camera.global_position)
         self.tree2.look_at(self.camera.global_position)
@@ -325,7 +390,18 @@ class Example(Base):
         self.tree6.look_at(self.camera.global_position)
         self.tree7.look_at(self.camera.global_position)
         self.tree8.look_at(self.camera.global_position)
-        # self.tree9.look_at(self.camera.global_position)
+
+        self.spookytree.look_at(self.camera.global_position)
+        self.spookytree1.look_at(self.camera.global_position)
+        self.spookytree2.look_at(self.camera.global_position)
+        self.spookytree3.look_at(self.camera.global_position)
+        self.spookytree4.look_at(self.camera.global_position)
+        self.spookytree5.look_at(self.camera.global_position)
+        self.spookytree6.look_at(self.camera.global_position)
+        self.spookytree7.look_at(self.camera.global_position)
+        self.spookytree8.look_at(self.camera.global_position)
+
+
 
         self.cameraRig.update(self.input, self.level, self.win)
         self.renderer.render(self.scene, self.camera)
