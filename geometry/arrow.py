@@ -50,7 +50,7 @@ class ArrowMesh(Mesh):
         self.mesh2.translate(0.0,1.75,0.0)
 
         self.mesh3 = Mesh(geometry3, primMetal)
-        self.mesh3.translate(0.0,1.5,0.0)
+        self.mesh3.translate(0.0,1.5001,0.0)
         self.mesh3.rotate_x(pi/2)
         self.mesh3.rotate_z(pi/4)
         self.mesh3.scale(0.28)
