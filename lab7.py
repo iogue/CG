@@ -272,55 +272,55 @@ class Example(Base):
         tree_geometry = RectangleGeometry(10,10)
         tree_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.tree = Mesh(tree_geometry, tree_material)
-        self.tree.set_position([10, 1.65, 0])
+        self.tree.set_position([10, 2, 0])
         self.scene.add(self.tree)
 
         tree_geometry1 = RectangleGeometry(10,10)
         tree_geometry1.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.tree1 = Mesh(tree_geometry1, tree_material)
-        self.tree1.set_position([15, 1.65, 10])
+        self.tree1.set_position([15, 2, 10])
         self.scene.add(self.tree1)
 
         tree_geometry2 = RectangleGeometry(10,10)
         tree_geometry2.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.tree2 = Mesh(tree_geometry2, tree_material)
-        self.tree2.set_position([-10, 1.65, 0])
+        self.tree2.set_position([-10, 2, 0])
         self.scene.add(self.tree2)
 
         tree_geometry3 = RectangleGeometry(10,10)
         tree_geometry3.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.tree3 = Mesh(tree_geometry3, tree_material)
-        self.tree3.set_position([-15, 1.65, 10])
+        self.tree3.set_position([-15, 2, 10])
         self.scene.add(self.tree3)
 
         tree_geometry4 = RectangleGeometry(10,10)
         tree_geometry4.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.tree4 = Mesh(tree_geometry4, tree_material)
-        self.tree4.set_position([-15, 1.65, 20])
+        self.tree4.set_position([-15, 2, 20])
         self.scene.add(self.tree4)
 
         tree_geometry5 = RectangleGeometry(10,10)
         tree_geometry5.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.tree5 = Mesh(tree_geometry5, tree_material)
-        self.tree5.set_position([15, 1.65, 20])
+        self.tree5.set_position([15, 2, 20])
         self.scene.add(self.tree5)
 
         tree_geometry6 = RectangleGeometry(10,10)
         tree_geometry6.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.tree6 = Mesh(tree_geometry6, tree_material)
-        self.tree6.set_position([-10, 1.65, 35])
+        self.tree6.set_position([-10, 2, 35])
         self.scene.add(self.tree6)
 
         tree_geometry7 = RectangleGeometry(10,10)
         tree_geometry7.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.tree7 = Mesh(tree_geometry7, tree_material)
-        self.tree7.set_position([10, 1.65, 35])
+        self.tree7.set_position([10, 2, 35])
         self.scene.add(self.tree7)
 
         tree_geometry8 = RectangleGeometry(10,10)
         tree_geometry8.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.tree8 = Mesh(tree_geometry8, tree_material)
-        self.tree8.set_position([0, 1.65, 35])
+        self.tree8.set_position([0, 2, 35])
         self.scene.add(self.tree8)
 
         gate_material = TextureMaterial(texture=Texture(file_name="images/gate.png"))
@@ -505,6 +505,7 @@ class Example(Base):
 
         # SCENARIO LEVEL 3
         grave_material = TextureMaterial(texture=Texture(file_name="images/spooky_tree.png"), property_dict={"doubleSide": True})
+        skpy_material = TextureMaterial(texture=Texture(file_name="images/spky_tree.png"), property_dict={"doubleSide": True})
         grave_geometry = RectangleGeometry(2,3)
         grave_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.grave = Mesh(grave_geometry, grave_material)
@@ -514,7 +515,7 @@ class Example(Base):
         grave_geometry1 = RectangleGeometry(2,3)
         grave_geometry1.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.grave1 = Mesh(grave_geometry1, grave_material)
-        self.grave1.set_position([-91, -1.5, -15])
+        self.grave1.set_position([-91, -1.5, 15])
         self.scene.add(self.grave1)
 
         grave_geometry2 = RectangleGeometry(2,3)
@@ -547,10 +548,10 @@ class Example(Base):
         self.grave6.set_position([-91, -1.5, 10])
         self.scene.add(self.grave6)
 
-        grave_geometry7 = RectangleGeometry(2,3)
+        grave_geometry7 = RectangleGeometry(10,10)
         grave_geometry7.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
-        self.grave7 = Mesh(grave_geometry7, grave_material)
-        self.grave7.set_position([-91, -1.5, 15])
+        self.grave7 = Mesh(grave_geometry7, skpy_material)
+        self.grave7.set_position([-91, 2, -15])
         self.scene.add(self.grave7)
 
         grave_geometry8 = RectangleGeometry(2,3)
@@ -589,10 +590,10 @@ class Example(Base):
         self.grave13.set_position([-81, -1.5, 0])
         self.scene.add(self.grave13)
 
-        grave_geometry14 = RectangleGeometry(2,3)
+        grave_geometry14 = RectangleGeometry(10,10)
         grave_geometry14.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
-        self.grave14 = Mesh(grave_geometry14, grave_material)
-        self.grave14.set_position([-81, -1.5, 5])
+        self.grave14 = Mesh(grave_geometry14, skpy_material)
+        self.grave14.set_position([-81, 2, 5])
         self.scene.add(self.grave14)
 
         grave_geometry15 = RectangleGeometry(2,3)
@@ -679,11 +680,11 @@ class Example(Base):
         self.lgrave10.set_position([-121, -1.5, -15])
         self.scene.add(self.lgrave10)
 
-        lgrave_geometry11 = RectangleGeometry(2,3)
+        lgrave_geometry11 = RectangleGeometry(10,10)
         lgrave_geometry11.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
-        self.lgrave11 = Mesh(lgrave_geometry6, grave_material)
-        self.lgrave11.set_position([-121, -1.5, -10])
-        self.scene.add(self.lgrave6)
+        self.lgrave11 = Mesh(lgrave_geometry11, skpy_material)
+        self.lgrave11.set_position([-121, 2, -10])
+        self.scene.add(self.lgrave11)
 
         lgrave_geometry12 = RectangleGeometry(2,3)
         lgrave_geometry12.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
@@ -709,10 +710,10 @@ class Example(Base):
         self.lgrave15.set_position([-121, -1.5, 10])
         self.scene.add(self.lgrave15)
 
-        lgrave_geometry16 = RectangleGeometry(2,3)
+        lgrave_geometry16 = RectangleGeometry(10,10)
         lgrave_geometry16.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
-        self.lgrave16 = Mesh(lgrave_geometry16, grave_material)
-        self.lgrave16.set_position([-121, -1.5, 15])
+        self.lgrave16 = Mesh(lgrave_geometry16, skpy_material)
+        self.lgrave16.set_position([-121, 2, 15])
         self.scene.add(self.lgrave16)
 
         lgrave_geometry17 = RectangleGeometry(2,3)
@@ -825,8 +826,82 @@ class Example(Base):
         zombie_geometry = RectangleGeometry(3,6)
         zombie_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.zombie = Mesh(zombie_geometry, zombie_material)
-        self.zombie.set_position([-101, 0, 30])
+        self.zombie.set_position([-101, 0, 25])
         self.scene.add(self.zombie)
+
+        spky_geometry = RectangleGeometry(10,10)
+        spky_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spky = Mesh(spky_geometry, skpy_material)
+        self.spky.set_position([-96, 2, 35])
+        self.scene.add(self.spky)
+
+        spky_geometry1 = RectangleGeometry(10,10)
+        spky_geometry1.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spky1 = Mesh(spky_geometry1, skpy_material)
+        self.spky1.set_position([-116, 2, 35])
+        self.scene.add(self.spky1)
+
+        spky_geometry2 = RectangleGeometry(10,10)
+        spky_geometry2.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spky2 = Mesh(spky_geometry2, skpy_material)
+        self.spky2.set_position([-140, 2, 0])
+        self.scene.add(self.spky2)
+
+        spky_geometry3 = RectangleGeometry(10,10)
+        spky_geometry3.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spky3 = Mesh(spky_geometry3, skpy_material)
+        self.spky3.set_position([-140, 2, 20])
+        self.scene.add(self.spky3)
+
+        spky_geometry4 = RectangleGeometry(10,10)
+        spky_geometry4.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spky4 = Mesh(spky_geometry4, skpy_material)
+        self.spky4.set_position([-140, 2, -20])
+        self.scene.add(self.spky4)
+
+        spky_geometry5 = RectangleGeometry(10,10)
+        spky_geometry5.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spky5 = Mesh(spky_geometry5, skpy_material)
+        self.spky5.set_position([-60, 2, 0])
+        self.scene.add(self.spky5)
+
+        spky_geometry6 = RectangleGeometry(10,10)
+        spky_geometry6.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spky6 = Mesh(spky_geometry6, skpy_material)
+        self.spky6.set_position([-60, 2, 20])
+        self.scene.add(self.spky6)
+
+        spky_geometry7 = RectangleGeometry(10,10)
+        spky_geometry7.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spky7 = Mesh(spky_geometry7, skpy_material)
+        self.spky7.set_position([-60, 2, -20])
+        self.scene.add(self.spky7)
+
+        spky_geometry8 = RectangleGeometry(10,10)
+        spky_geometry8.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spky8 = Mesh(spky_geometry8, skpy_material)
+        self.spky8.set_position([-111, 2, -40])
+        self.scene.add(self.spky8)
+
+        spky_geometry9 = RectangleGeometry(10,10)
+        spky_geometry9.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.spky9 = Mesh(spky_geometry9, skpy_material)
+        self.spky9.set_position([-81, 2, -40])
+        self.scene.add(self.spky9)
+
+        dead_material = TextureMaterial(texture=Texture(file_name="images/dead1.png"))
+        dead_geometry = RectangleGeometry(6,3)
+        dead_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.dead = Mesh(dead_geometry, dead_material)
+        self.dead.set_position([-123, -1.5, 1])
+        self.scene.add(self.dead)
+
+        dead_material1 = TextureMaterial(texture=Texture(file_name="images/dead.png"))
+        dead_geometry1 = RectangleGeometry(6,3)
+        dead_geometry1.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.dead1 = Mesh(dead_geometry1, dead_material1)
+        self.dead1.set_position([-98, -1.5, -5])
+        self.scene.add(self.dead1)
 
         #=================================================
 
@@ -867,38 +942,45 @@ class Example(Base):
         rock_geometry1 = RectangleGeometry(5,5)
         rock_geometry1.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.rock1 = Mesh(rock_geometry1, rock_material)
-        self.rock1.set_position([170, -2.9, -15])
+        self.rock1.set_position([220, -2.9, 20])
         self.scene.add(self.rock1)
 
         rock_geometry2 = RectangleGeometry(5,5)
         rock_geometry2.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.rock2 = Mesh(rock_geometry2, rock_material)
-        self.rock2.set_position([170, -2.9, -15])
+        self.rock2.set_position([230, -2.9, 10])
         self.scene.add(self.rock2)
 
         rock_geometry3 = RectangleGeometry(5,5)
         rock_geometry3.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.rock3 = Mesh(rock_geometry3, rock_material)
-        self.rock3.set_position([170, -2.9, -15])
+        self.rock3.set_position([180, -2.9, -10])
         self.scene.add(self.rock3)
 
         rock_geometry4 = RectangleGeometry(5,5)
         rock_geometry4.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.rock4 = Mesh(rock_geometry4, rock_material)
-        self.rock4.set_position([170, -2.9, -15])
+        self.rock4.set_position([210, -2.9, -30])
         self.scene.add(self.rock4)
 
         rock_geometry5 = RectangleGeometry(5,5)
         rock_geometry5.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.rock5 = Mesh(rock_geometry5, rock_material)
-        self.rock5.set_position([170, -2.9, -15])
+        self.rock5.set_position([230, -2.9, -15])
         self.scene.add(self.rock5)
 
         rock_geometry6 = RectangleGeometry(5,5)
         rock_geometry6.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.rock6 = Mesh(rock_geometry6, rock_material)
-        self.rock6.set_position([170, -2.9, -15])
+        self.rock6.set_position([170, -2.9, 25])
         self.scene.add(self.rock6)
+
+        plane_material = TextureMaterial(texture=Texture(file_name="images/plane.png"), property_dict={"doubleSide": True})
+        plane_geometry = RectangleGeometry(25,25)
+        self.plane = Mesh(plane_geometry, plane_material)
+        self.plane.rotate_x(math.pi/2)
+        self.plane.set_position([180, 30, 0])
+        self.scene.add(self.plane)
         
         #=================================================
 
@@ -918,6 +1000,13 @@ class Example(Base):
         self.earth.set_position([-200, 20, -30])
         self.scene.add(self.earth)
 
+        meteor_material = TextureMaterial(texture=Texture(file_name="images/meteor.png"))
+        meteor_geometry = RectangleGeometry(15,15)
+        meteor_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.meteor = Mesh(meteor_geometry, meteor_material)
+        self.meteor.set_position([-220, 25, -35])
+        self.scene.add(self.meteor)
+
         satellite_material = TextureMaterial(texture=Texture(file_name="images/satellite.png"))
         satellite_geometry = RectangleGeometry(5,5)
         satellite_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
@@ -931,6 +1020,13 @@ class Example(Base):
         self.flag = Mesh(flag_geometry, flag_material)
         self.flag.set_position([-203, 0, 22])
         self.scene.add(self.flag)
+
+        ship_material = TextureMaterial(texture=Texture(file_name="images/ship.png"), property_dict={"doubleSide": True})
+        ship_geometry = RectangleGeometry(35,35)
+        ship_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.ship = Mesh(ship_geometry, ship_material)
+        self.ship.set_position([-175, 1, 20])
+        self.scene.add(self.ship)
 
         self.scene.add(self.arrows[0])
         self.scene.add(self.arrows[1])
@@ -1017,16 +1113,38 @@ class Example(Base):
         self.palm3.look_at(self.camera.global_position)
         
         self.zombie.look_at(self.camera.global_position)
+        
+        self.dead.look_at(self.camera.global_position)
+        self.dead1.look_at(self.camera.global_position)
+
+        self.spky.look_at(self.camera.global_position)
+        self.spky1.look_at(self.camera.global_position)
+        self.spky2.look_at(self.camera.global_position)
+        self.spky3.look_at(self.camera.global_position)
+        self.spky4.look_at(self.camera.global_position)
+        self.spky5.look_at(self.camera.global_position)
+        self.spky6.look_at(self.camera.global_position)
+        self.spky7.look_at(self.camera.global_position)
+        self.spky8.look_at(self.camera.global_position)
+        self.spky9.look_at(self.camera.global_position)
 
         self.rock.look_at(self.camera.global_position)
+        self.rock1.look_at(self.camera.global_position)
+        self.rock2.look_at(self.camera.global_position)
+        self.rock3.look_at(self.camera.global_position)
+        self.rock4.look_at(self.camera.global_position)
+        self.rock5.look_at(self.camera.global_position)
+        self.rock6.look_at(self.camera.global_position)
         
         self.earth.look_at(self.camera.global_position)
+        self.meteor.look_at(self.camera.global_position)
 
         self.astronaut.look_at(self.camera.global_position)
         
         self.satellite.look_at(self.camera.global_position)
 
         self.flag.look_at(self.camera.global_position)
+        self.ship.look_at(self.camera.global_position)
 
         self.cameraRig.update(self.input, self.level, self.win)
         self.renderer.render(self.scene, self.camera)
