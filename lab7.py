@@ -774,11 +774,12 @@ class Example(Base):
         self.scene.add(self.spookygate17)
 
         zombie_material = TextureMaterial(texture=Texture(file_name="images/zombie.png"))
-        zombie_geometry = RectangleGeometry(2.5,5)
+        zombie_geometry = RectangleGeometry(3,6)
         zombie_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
         self.zombie = Mesh(zombie_geometry, zombie_material)
-        self.zombie.set_position([-104, 0, 20])
+        self.zombie.set_position([-101, 0, 30])
         self.scene.add(self.zombie)
+
 
         #=================================================
 
@@ -918,8 +919,6 @@ class Example(Base):
         self.palm3.look_at(self.camera.global_position)
         
         self.zombie.look_at(self.camera.global_position)
-
-
 
         self.cameraRig.update(self.input, self.level, self.win)
         self.renderer.render(self.scene, self.camera)
