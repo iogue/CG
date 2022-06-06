@@ -32,6 +32,8 @@ from geometry.instructions import InstructionsMesh
 from geometry.winning import Winning
 from extras.movement_camera import MovementCamera
 from core.matrix import Matrix
+from material.material import Material
+from geometry.polygon import PolygonGeometry
 
 class Example(Base):
     """
@@ -54,6 +56,35 @@ class Example(Base):
         self.bow.set_position([-0.3,0,-0.3])
         self.arrow.set_position([-0.175,0.3,0])
         self.arrow.rotate_x(-math.pi/2, local=False)
+        vertex_shader_code = """
+            uniform mat4 projectionMatrix;
+            uniform mat4 viewMatrix;
+            uniform mat4 modelMatrix;
+            in vec3 vertexPosition;
+            in vec2 vertexUV;
+            out vec2 UV;
+
+            void main()
+            {
+                gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vertexPosition, 1.0);
+                UV = vertexUV;
+            }
+        """
+        fragment_shader_code = """
+            uniform sampler2D rgbNoise;
+            uniform sampler2D image;
+            in vec2 UV;
+            uniform float time;
+            out vec4 fragColor;
+
+            void main()
+            {
+                vec2 uvShift = UV + vec2(-0.033, 0.07) * time;
+                vec4 noiseValues = texture2D(rgbNoise, uvShift);
+                vec2 uvNoise = UV + 0.01 * noiseValues.rg;
+                fragColor = texture2D(image, uvNoise);
+            }
+        """
 
 
         geometry = RectangleGeometry(width = 0.5, height = 0.125)
@@ -187,30 +218,47 @@ class Example(Base):
 
         # LEVEL 4
         nether_sky_geometry = SphereGeometry(radius=50)
-        nether_sky_material = TextureMaterial(texture=Texture(file_name="images/red_sky.jpg"), property_dict={"doubleSide": True})
+        nether_sky_material = TextureMaterial(texture=Texture(file_name="images/sky1.jpg"), property_dict={"doubleSide": True})
         nether_sky = Mesh(nether_sky_geometry, nether_sky_material)
         nether_sky.translate(202,0,0)
+        nether_sky_geometry1 = SphereGeometry(radius=49.9)
+        nether_sky_material1 = TextureMaterial(texture=Texture(file_name="images/volcano.png"), property_dict={"doubleSide": True})
+        nether_sky1 = Mesh(nether_sky_geometry1, nether_sky_material1)
+        nether_sky1.translate(202,0,0)
         self.scene.add(nether_sky)
+        self.scene.add(nether_sky1)
+
         nether_geometry = RectangleGeometry(width=100, height=100)
-        nether_material = TextureMaterial(
-            texture=Texture(file_name="images/nether.jpg"),
-            property_dict={"repeatUV": [50, 50]}
-        )
-        nether = Mesh(nether_geometry, nether_material)
-        nether.rotate_x(-math.pi/2)
-        nether.translate(202,0,-3)
-        self.scene.add(nether) 
+        # nether_material = TextureMaterial(
+        #     texture=Texture(file_name="images/magma.jpg"),
+        #     property_dict={"repeatUV": [50, 50]}
+        # )
+        # nether = Mesh(nether_geometry, nether_material)
+        # self.scene.add(nether) 
+
+        rgb_noise_texture = Texture("images/rgb-noise.jpg")
+        grid_texture = Texture("images/lava.jpg")
+        self.distort_material = Material(vertex_shader_code, fragment_shader_code)
+        self.distort_material.add_uniform("sampler2D", "rgbNoise", [rgb_noise_texture.texture_ref, 1])
+        self.distort_material.add_uniform("sampler2D", "image", [grid_texture.texture_ref, 2])
+        self.distort_material.add_uniform("float", "time", 0.0)
+        self.distort_material.locate_uniforms()
+
+        self.magma = Mesh(nether_geometry, self.distort_material)
+        self.magma.rotate_x(-math.pi/2)
+        self.magma.translate(202,0,-3)
+        self.scene.add(self.magma)
         #=================================================
 
         # LEVEL 5
         end_sky_geometry = SphereGeometry(radius=50)
-        end_sky_material = TextureMaterial(texture=Texture(file_name="images/end_sky.jpg"), property_dict={"doubleSide": True})
+        end_sky_material = TextureMaterial(texture=Texture(file_name="images/black_sky.png"), property_dict={"doubleSide": True})
         end_sky = Mesh(end_sky_geometry, end_sky_material)
         end_sky.translate(-202,0,0)
         self.scene.add(end_sky)
         end_geometry = RectangleGeometry(width=100, height=100)
         end_material = TextureMaterial(
-            texture=Texture(file_name="images/end.jpg"),
+            texture=Texture(file_name="images/moon.jpg"),
             property_dict={"repeatUV": [40, 40]}
         )
         end = Mesh(end_geometry, end_material)
@@ -780,61 +828,109 @@ class Example(Base):
         self.zombie.set_position([-101, 0, 30])
         self.scene.add(self.zombie)
 
+        #=================================================
 
+        # SCENARIO LEVEL 4
+
+        ground_material = TextureMaterial(texture=Texture(file_name="images/magma.jpg"), property_dict={"doubleSide": True})
+        ground_geometry = PolygonGeometry(sides=15, radius=2.5)
+        self.ground = Mesh(ground_geometry, ground_material)
+        self.ground.set_position([200, -2.9, 20])
+        self.ground.rotate_x(math.pi/2)
+        self.scene.add(self.ground)
+
+        ground_geometry1 = PolygonGeometry(sides=15, radius=5)
+        self.ground1 = Mesh(ground_geometry1, ground_material)
+        self.ground1.set_position([180, -2.9, -20])
+        self.ground1.rotate_x(math.pi/2)
+        self.scene.add(self.ground1)
+
+        ground_geometry2 = PolygonGeometry(sides=15, radius=5)
+        self.ground2 = Mesh(ground_geometry2, ground_material)
+        self.ground2.set_position([200, -2.9, -20])
+        self.ground2.rotate_x(math.pi/2)
+        self.scene.add(self.ground2)
+
+        ground_geometry3 = PolygonGeometry(sides=15, radius=5)
+        self.ground3 = Mesh(ground_geometry3, ground_material)
+        self.ground3.set_position([220, -2.9, -20])
+        self.ground3.rotate_x(math.pi/2)
+        self.scene.add(self.ground3)
+
+        rock_material = TextureMaterial(texture=Texture(file_name="images/rock.png"))
+        rock_geometry = RectangleGeometry(10,10)
+        rock_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.rock = Mesh(rock_geometry, rock_material)
+        self.rock.set_position([170, -2.9, -14])
+        self.scene.add(self.rock)
+
+        rock_geometry1 = RectangleGeometry(5,5)
+        rock_geometry1.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.rock1 = Mesh(rock_geometry1, rock_material)
+        self.rock1.set_position([170, -2.9, -15])
+        self.scene.add(self.rock1)
+
+        rock_geometry2 = RectangleGeometry(5,5)
+        rock_geometry2.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.rock2 = Mesh(rock_geometry2, rock_material)
+        self.rock2.set_position([170, -2.9, -15])
+        self.scene.add(self.rock2)
+
+        rock_geometry3 = RectangleGeometry(5,5)
+        rock_geometry3.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.rock3 = Mesh(rock_geometry3, rock_material)
+        self.rock3.set_position([170, -2.9, -15])
+        self.scene.add(self.rock3)
+
+        rock_geometry4 = RectangleGeometry(5,5)
+        rock_geometry4.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.rock4 = Mesh(rock_geometry4, rock_material)
+        self.rock4.set_position([170, -2.9, -15])
+        self.scene.add(self.rock4)
+
+        rock_geometry5 = RectangleGeometry(5,5)
+        rock_geometry5.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.rock5 = Mesh(rock_geometry5, rock_material)
+        self.rock5.set_position([170, -2.9, -15])
+        self.scene.add(self.rock5)
+
+        rock_geometry6 = RectangleGeometry(5,5)
+        rock_geometry6.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.rock6 = Mesh(rock_geometry6, rock_material)
+        self.rock6.set_position([170, -2.9, -15])
+        self.scene.add(self.rock6)
+        
         #=================================================
 
         # SCENARIO LEVEL 5
-        
-        # obsidian_material = TextureMaterial(texture=Texture(file_name="images/obsidian.png"), property_dict={"repeatUV": [5, 5]})
-        # tower_geometry = CylinderGeometry(height=6, radius=2, radial_segments=6)
-        # self.tower_geometry = Mesh(tower_geometry, obsidian_material)
-        # self.tower_geometry.set_position([10, 3.12, 0])
-        # self.scene.add(self.tower_geometry)
 
-        # tower_geometry1 = CylinderGeometry(height=10, radius=2, radial_segments=6)
-        # self.tower1 = Mesh(tower_geometry1, obsidian_material)
-        # self.tower1.set_position([15, 3.12, 10])
-        # self.scene.add(self.tower1)
+        astronaut_material = TextureMaterial(texture=Texture(file_name="images/astronaut.png"))
+        astronaut_geometry = RectangleGeometry(5,5)
+        astronaut_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.astronaut = Mesh(astronaut_geometry, astronaut_material)
+        self.astronaut.set_position([-203, 0, 20])
+        self.scene.add(self.astronaut)
 
-        # tower_geometry2 = CylinderGeometry(height=3, radius=2, radial_segments=6)
-        # self.tower2 = Mesh(tower_geometry2, obsidian_material)
-        # self.tower2.set_position([-10, 3.12, 0])
-        # self.scene.add(self.tower2)
+        earth_material = TextureMaterial(texture=Texture(file_name="images/earth.png"))
+        earth_geometry = RectangleGeometry(50,50)
+        earth_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.earth = Mesh(earth_geometry, earth_material)
+        self.earth.set_position([-200, 20, -30])
+        self.scene.add(self.earth)
 
-        # tower_geometry3 = CylinderGeometry(height=6, radius=2, radial_segments=6)
-        # self.tower3 = Mesh(tower_geometry3, obsidian_material)
-        # self.tower3.set_position([-15, 3.12, 10])
-        # self.scene.add(self.tower3)
+        satellite_material = TextureMaterial(texture=Texture(file_name="images/satellite.png"))
+        satellite_geometry = RectangleGeometry(5,5)
+        satellite_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.satellite = Mesh(satellite_geometry, satellite_material)
+        self.satellite.set_position([-160, 10, 0])
+        self.scene.add(self.satellite)
 
-        # tower_geometry4 = CylinderGeometry(height=8, radius=2, radial_segments=6)
-        # self.tower4 = Mesh(tower_geometry4, obsidian_material)
-        # self.tower4.set_position([-15, 3.12, 20])
-        # self.scene.add(self.tower4)
-
-        # tower_geometry5 = CylinderGeometry(height=3, radius=2, radial_segments=6)
-        # self.tower5 = Mesh(tower_geometry5, obsidian_material)
-        # self.tower5.set_position([15, 3.12, 20])
-        # self.scene.add(self.tower5)
-
-        # tower_geometry6 = CylinderGeometry(height=3, radius=2, radial_segments=6)
-        # self.tower6 = Mesh(tower_geometry6, obsidian_material)
-        # self.tower6.set_position([-10, 3.12, 30])
-        # self.scene.add(self.tower6)
-
-        # tower_geometry7 = CylinderGeometry(height=10, radius=2, radial_segments=6)
-        # self.tower7 = Mesh(tower_geometry7, obsidian_material)
-        # self.tower7.set_position([0, 3.12, 30])
-        # self.scene.add(self.tower7)
-
-        # tower_geometry8 = CylinderGeometry(height=10, radius=2, radial_segments=6)
-        # self.tower8 = Mesh(tower_geometry8, obsidian_material)
-        # self.tower8.set_position([0, 3.12, -30])
-        # self.scene.add(self.tower8)
-
-        # tower_geometry9 = CylinderGeometry(height=10, radius=2, radial_segments=6)
-        # self.tower9 = Mesh(tower_geometry9, obsidian_material)
-        # self.tower9.set_position([10, 3.12, 30])
-        # self.scene.add(self.tower9)
+        flag_material = TextureMaterial(texture=Texture(file_name="images/flag.png"))
+        flag_geometry = RectangleGeometry(5,5)
+        flag_geometry.apply_matrix(Matrix.make_rotation_y(3.14)) # Rotate to face -z
+        self.flag = Mesh(flag_geometry, flag_material)
+        self.flag.set_position([-203, 0, 22])
+        self.scene.add(self.flag)
 
         self.scene.add(self.arrows[0])
         self.scene.add(self.arrows[1])
@@ -860,6 +956,8 @@ class Example(Base):
 
 
     def update(self):
+        self.distort_material.uniform_dict["time"].data += self.delta_time/4
+
         self.tree.look_at(self.camera.global_position)
         self.tree1.look_at(self.camera.global_position)
         self.tree2.look_at(self.camera.global_position)
@@ -919,6 +1017,16 @@ class Example(Base):
         self.palm3.look_at(self.camera.global_position)
         
         self.zombie.look_at(self.camera.global_position)
+
+        self.rock.look_at(self.camera.global_position)
+        
+        self.earth.look_at(self.camera.global_position)
+
+        self.astronaut.look_at(self.camera.global_position)
+        
+        self.satellite.look_at(self.camera.global_position)
+
+        self.flag.look_at(self.camera.global_position)
 
         self.cameraRig.update(self.input, self.level, self.win)
         self.renderer.render(self.scene, self.camera)
